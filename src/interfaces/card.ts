@@ -1,14 +1,12 @@
-interface Card {
+export interface Card {
     "@context": string;
     "@id": string;
     "@type": string;
     reference: string;
-    loreEntries: any[]; 
     cardType: CardType;
     cardSubTypes: CardSubType[];
     cardSet: CardSet;
     rarity: Rarity;
-    cardRulings: any[]; 
     imagePath: string;
     assets: Assets;
     lowerPrice: number;
@@ -20,7 +18,7 @@ interface Card {
     elements: Elements;
   }
   
-  interface CardType {
+  export interface CardType {
     "@id": string;
     "@type": string;
     reference: string;
@@ -28,7 +26,7 @@ interface Card {
     name: string;
   }
   
-  interface CardSubType {
+  export interface CardSubType {
     "@id": string;
     "@type": string;
     reference: string;
@@ -36,7 +34,7 @@ interface Card {
     name: string;
   }
   
-  interface CardSet {
+  export interface CardSet {
     "@id": string;
     "@type": string;
     id: string;
@@ -44,7 +42,7 @@ interface Card {
     name: string;
   }
   
-  interface Rarity {
+  export interface Rarity {
     "@id": string;
     "@type": string;
     reference: string;
@@ -52,11 +50,11 @@ interface Card {
     name: string;
   }
   
-  interface Assets {
+  export interface Assets {
     WEB: string[];
   }
   
-  interface Faction {
+  export interface Faction {
     "@id": string;
     "@type": string;
     reference: string;
@@ -65,7 +63,7 @@ interface Card {
     name: string;
   }
   
-  interface Elements {
+  export interface Elements {
     MAIN_COST: string;
     RECALL_COST: string;
     MOUNTAIN_POWER: string;

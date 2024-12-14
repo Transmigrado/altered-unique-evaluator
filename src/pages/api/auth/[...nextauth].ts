@@ -16,8 +16,7 @@ export const authOptions: AuthOptions = {
         idToken: { label: "ID Token", type: "text" },
       },
       authorize: async (
-        credentials: { idToken: string } | undefined, 
-         _req): Promise<User | null>  => {
+        credentials: { idToken: string } | undefined): Promise<User | null>  => {
           if (credentials?.idToken) {
             try {
               const decoded: FirebaseUser = await firebaseAdmin.auth().verifyIdToken(credentials.idToken);
