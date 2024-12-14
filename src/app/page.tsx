@@ -5,6 +5,7 @@ import { Navbar } from '@/components/navbar'
 import type { Metadata } from 'next'
 import RetrieverCard from '@/components/RetrieverCard'
 
+
 export const metadata: Metadata = {
   description:
     'Radiant helps you sell more by revealing sensitive information about your customers.',
@@ -21,18 +22,18 @@ function Hero() {
             Evalua tu unica
           </h1>
           <p className="mt-8 max-w-lg text-xl/7 font-medium text-gray-950/75 sm:text-2xl/8">
-            Radiant helps you sell more by revealing sensitive information about
-            your customers.
+            Lorem Ipsum
           </p>
           <div className="mt-12 flex flex-col gap-x-6 gap-y-4 sm:flex-row">
-            <Button href="#">Comienza ahora</Button>
-
+            <Button href="/login">Comienza ahora</Button>
           </div>
         </div>
       </Container>
     </div>
   )
 }
+
+
 
 export default function Home() {
   return (
