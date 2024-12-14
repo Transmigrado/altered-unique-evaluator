@@ -1,18 +1,25 @@
 import '@/styles/tailwind.css'
 import type { Metadata } from 'next'
+import { authOptions } from '@/pages/api/auth/[...nextauth]'
+import Provider from './context/client-provider'
+import StoreProvider from './StoreProvider'
+import { getServerSession } from "next-auth/next"
 
 export const metadata: Metadata = {
   title: {
-    template: '%s - Radiant',
-    default: 'Radiant - Close every deal',
+    template: '%s - Altered Unique Evaluator',
+    default: 'Altered Unique Evaluator',
   },
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
+
+  const session = await getServerSession(authOptions)
+
   return (
     <html lang="en">
       <head>
@@ -20,14 +27,14 @@ export default function RootLayout({
           rel="stylesheet"
           href="https://api.fontshare.com/css?f%5B%5D=switzer@400,500,600,700&amp;display=swap"
         />
-        <link
-          rel="alternate"
-          type="application/rss+xml"
-          title="The Radiant Blog"
-          href="/blog/feed.xml"
-        />
       </head>
-      <body className="text-gray-950 antialiased">{children}</body>
+      <body className="text-gray-950 antialiased">
+        <Provider session={session!}>
+            <StoreProvider>
+              {children}
+            </StoreProvider>
+          </Provider>
+      </body>
     </html>
   )
 }

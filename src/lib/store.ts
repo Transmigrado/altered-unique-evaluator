@@ -1,9 +1,7 @@
 'use client'
 import { configureStore } from "@reduxjs/toolkit";
 import createSagaMiddleware from "@redux-saga/core";
-import candidates from "./features/candidates";
 import positions from "./features/positions";
-import areas from './features/areas'
 import rootSaga from "@/sagas";
 
 export const sagaMiddleWare = createSagaMiddleware();
@@ -11,9 +9,7 @@ export const sagaMiddleWare = createSagaMiddleware();
 export const makeStore = () => {
   const store =  configureStore({
     reducer: {
-      candidates,
-      positions,
-      areas,
+      positions
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(sagaMiddleWare),
   });
