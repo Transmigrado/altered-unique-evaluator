@@ -1,3 +1,5 @@
+import { User } from "./common";
+
 export interface Card {
     "@context": string;
     "@id": string;
@@ -70,4 +72,9 @@ export interface Card {
     OCEAN_POWER: string;
     FOREST_POWER: string;
     MAIN_EFFECT: string;
+  }
+
+  export interface CardDb {
+    card: Card;
+    user: User;
   }

@@ -1,9 +1,12 @@
 'use client'
+import AddCard from '@/components/core/AddCard'
 import { Logo } from '@/components/logo'
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
-import { useSession, getSession } from "next-auth/react"
+import { useSession } from "next-auth/react"
+import clsx from 'clsx'
+
 const user = {
   name: 'Tom Cook',
   email: 'tom@example.com',
@@ -20,24 +23,13 @@ const userNavigation = [
   { name: 'Cerrar sesión', href: '#' },
 ]
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
-}
-
 export default function Home() {
 
     const { data: session, status } = useSession()
 
   return (
     <>
-      {/*
-        This example requires updating your template:
-
-        ```
-        <html class="h-full bg-gray-100">
-        <body class="h-full">
-        ```
-      */}
+      
       <div className="min-h-full">
         <div className="bg-indigo-600 pb-32">
           <Disclosure as="nav" className="border-b border-indigo-300/25 bg-indigo-600 lg:border-none">
@@ -54,7 +46,7 @@ export default function Home() {
                           key={item.name}
                           href={item.href}
                           aria-current={item.current ? 'page' : undefined}
-                          className={classNames(
+                          className={clsx(
                             item.current ? 'bg-indigo-700 text-white' : 'text-white hover:bg-indigo-500/75',
                             'rounded-md px-3 py-2 text-sm font-medium',
                           )}
@@ -138,7 +130,7 @@ export default function Home() {
                     as="a"
                     href={item.href}
                     aria-current={item.current ? 'page' : undefined}
-                    className={classNames(
+                    className={clsx(
                       item.current ? 'bg-indigo-700 text-white' : 'text-white hover:bg-indigo-500/75',
                       'block rounded-md px-3 py-2 text-base font-medium',
                     )}
@@ -190,7 +182,7 @@ export default function Home() {
         <main className="-mt-32">
           <div className="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
             <div className="rounded-lg bg-white px-5 py-6 shadow sm:px-6">
-            
+                <AddCard />
             </div>
           </div>
         </main>

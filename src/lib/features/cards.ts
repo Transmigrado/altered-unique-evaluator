@@ -1,8 +1,8 @@
 
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface CardsState {
- 
+
   isLoading: boolean;
 }
 
@@ -17,10 +17,14 @@ const cardsSlices = createSlice({
     fetch(state){
         state.isLoading = true
     },
+    addCard: (state, _action: PayloadAction<{ code: string }>) => {
+      state.isLoading = true;
+    },
   },
 });
 
 export const { 
     fetch,
+    addCard
 } = cardsSlices.actions;
 export default cardsSlices.reducer;
