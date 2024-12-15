@@ -6,6 +6,8 @@ import { Card, CardDb, CardDbResponse } from '@/interfaces/card';
 import { firebaseFirestore, firebaseAuth } from '@/lib/firebase';
 import { fetchMyCards } from '@/services/firebase/cards';
 import { snapshotToArray } from '@/utils/firebase';
+import { getSession } from "next-auth/react";
+
 
 function* addCard(action: {type: string, payload: {code: string}}) {
   try {
@@ -36,12 +38,15 @@ function* addCard(action: {type: string, payload: {code: string}}) {
 
 function* fetchCards() {
   try{
+    const session = yield call(getSession);
+    console.log('session', session)
     const userId = firebaseAuth?.currentUser?.uid
     const result: QuerySnapshot = yield call(fetchMyCards, userId!)
+   
     const myCards = snapshotToArray<CardDbResponse>(result);
     yield put(ReducerCards.fetchSuccessfull({list: myCards}))
   } catch(e) {
-
+    console.log('error', e)
   }
 }
 

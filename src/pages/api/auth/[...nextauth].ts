@@ -17,6 +17,7 @@ export const authOptions: AuthOptions = {
       },
       authorize: async (
         credentials: { idToken: string } | undefined): Promise<User | null>  => {
+          console.log('credentials', credentials)
           if (credentials?.idToken) {
             try {
               const decoded: FirebaseUser = await firebaseAdmin.auth().verifyIdToken(credentials.idToken);
@@ -45,13 +46,22 @@ export const authOptions: AuthOptions = {
     signIn: "/login", 
   },
   callbacks: {
-    jwt: async ({ token, user }) => {
+    jwt: async (data) => {
+      const { user, token} = data
       if (user) {
         token.uid = user.id; 
         token.email = user.email; 
         token.name = user.name
       }
+      console.log('token', data)
       return token
+    },
+    session: async ({ session, token }) => {
+      console.log('token', token)
+      console.log('session', session)
+
+      //session.user.id = token.id;
+      return session;
     },
   },
   events: {},

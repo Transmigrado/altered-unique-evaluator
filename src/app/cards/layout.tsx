@@ -10,7 +10,7 @@ export default function Layout({
 
 
   return (
-    <DashboardLayout>
+    <DashboardLayout title="Mis cartas">
       {children}
     </DashboardLayout>
   )

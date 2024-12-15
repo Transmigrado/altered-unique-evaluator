@@ -1,9 +1,9 @@
 'use client'
-import AddCard from '@/components/core/AddCard'
 import { Logo } from '@/components/logo'
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { usePathname } from 'next/navigation'
 import clsx from 'clsx'
 
 const user = {
@@ -13,8 +13,8 @@ const user = {
     'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
 }
 const navigation = [
-  { name: 'Dashboard', href: '#', current: true },
-  { name: 'Mis Cartas', href: '#', current: false },
+  { name: 'Dashboard', href: 'home' },
+  { name: 'Mis Cartas', href: 'cards' },
 ]
 const userNavigation = [
   { name: 'Mi perfil', href: '#' },
@@ -22,12 +22,20 @@ const userNavigation = [
   { name: 'Cerrar sesión', href: '#' },
 ]
 
+interface Props {
+  children: React.ReactNode;
+  title: string;
+}
+
 export default function DashboardLayout({
     children,
-  }: {
-    children: React.ReactNode
-  }) {
+    title,
+  }: Props) {
 
+
+  const pathname = usePathname()
+
+  console.log('pathname', pathname)
 
   return (
     <>
@@ -47,9 +55,9 @@ export default function DashboardLayout({
                         <a
                           key={item.name}
                           href={item.href}
-                          aria-current={item.current ? 'page' : undefined}
+                          aria-current={`/${item.href}` === pathname ? 'page' : undefined}
                           className={clsx(
-                            item.current ? 'bg-indigo-700 text-white' : 'text-white hover:bg-indigo-500/75',
+                            `/${item.href}` === pathname ? 'bg-indigo-700 text-white' : 'text-white hover:bg-indigo-500/75',
                             'rounded-md px-3 py-2 text-sm font-medium',
                           )}
                         >
@@ -64,8 +72,8 @@ export default function DashboardLayout({
                     <input
                       name="search"
                       type="search"
-                      placeholder="Search"
-                      aria-label="Search"
+                      placeholder="Buscar"
+                      aria-label="Buscar"
                       className="col-start-1 row-start-1 block w-full rounded-md bg-white py-1.5 pl-10 pr-3 text-base text-gray-900 outline-none placeholder:text-gray-400 focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-white/40 sm:text-sm/6"
                     />
                     <MagnifyingGlassIcon
@@ -131,9 +139,9 @@ export default function DashboardLayout({
                     key={item.name}
                     as="a"
                     href={item.href}
-                    aria-current={item.current ? 'page' : undefined}
+                    aria-current={`/${item.href}` === pathname ? 'page' : undefined}
                     className={clsx(
-                      item.current ? 'bg-indigo-700 text-white' : 'text-white hover:bg-indigo-500/75',
+                      `/${item.href}` === pathname ? 'bg-indigo-700 text-white' : 'text-white hover:bg-indigo-500/75',
                       'block rounded-md px-3 py-2 text-base font-medium',
                     )}
                   >
@@ -176,7 +184,7 @@ export default function DashboardLayout({
           </Disclosure>
           <header className="py-10">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-              <h1 className="text-3xl font-bold tracking-tight text-white">Dashboard</h1>
+              <h1 className="text-3xl font-bold tracking-tight text-white">{title}</h1>
             </div>
           </header>
         </div>
