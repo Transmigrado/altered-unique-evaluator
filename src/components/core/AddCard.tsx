@@ -33,13 +33,7 @@ export default function AddCard() {
        }}
      >
        {({
-         values,
-         errors,
-         touched,
-         handleChange,
-         handleBlur,
          handleSubmit,
-         isSubmitting,
    
        }) => (
 

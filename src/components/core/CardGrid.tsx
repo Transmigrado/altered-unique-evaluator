@@ -1,5 +1,3 @@
-import { EnvelopeIcon, PhoneIcon } from '@heroicons/react/20/solid'
-
 const people = [
   {
     name: 'Jane Cooper',

@@ -3,7 +3,7 @@ import { Button } from '@/components/button'
 
 import { Link } from '@/components/link'
 import { Mark } from '@/components/logo'
-import { Field, Input, Label } from '@headlessui/react'
+import { Field, Label } from '@headlessui/react'
 import { clsx } from 'clsx'
 import type { Metadata } from 'next'
 import { Formik, Field as FieldFormik } from 'formik';
@@ -42,13 +42,7 @@ export default function SignIn() {
        }}
      >
        {({
-         values,
-         errors,
-         touched,
-         handleChange,
-         handleBlur,
          handleSubmit,
-         isSubmitting,
    
        }) => (
         <form action="#" method="POST" className="p-7 sm:p-11" onSubmit={handleSubmit}>

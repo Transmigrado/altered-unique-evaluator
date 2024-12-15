@@ -1,3 +1,4 @@
+import { Timestamp } from "firebase/firestore";
 import { User } from "./common";
 
 export interface Card {
@@ -77,4 +78,11 @@ export interface Card {
   export interface CardDb {
     card: Card;
     user: User;
+    createdAt: Date;
+    updatedAt: Date;
+    userId: string;
+  }
+
+  export interface CardDbResponse extends CardDb {
+    uid: string;
   }

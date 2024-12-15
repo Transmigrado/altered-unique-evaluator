@@ -3,7 +3,7 @@ import * as ReducerConnect from '@/lib/features/connect';
 import { signInWithEmailAndPassword, UserCredential, createUserWithEmailAndPassword } from 'firebase/auth';
 import { firebaseAuth } from '@/lib/firebase';
 
-function* connectEmail(action) {
+function* connectEmail(action: {type: string, payload: {email: string, password: string}}) {
   try {
 
     const { email, password } = action.payload;
@@ -23,10 +23,10 @@ function* connectEmail(action) {
 
 
 
-function* createAccountByEmail(action) {
+function* createAccountByEmail(action: {type: string, payload: {email: string, password: string}}) {
   try {
 
-    const { name, email, password } = action.payload;
+    const { email, password } = action.payload;
     const userCredential: UserCredential = yield call(createUserWithEmailAndPassword, firebaseAuth!, email, password);
 
     const user = userCredential.user;

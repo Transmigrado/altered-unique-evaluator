@@ -47,13 +47,7 @@ export default function Signup() {
        }}
      >
        {({
-         values,
-         errors,
-         touched,
-         handleChange,
-         handleBlur,
          handleSubmit,
-         isSubmitting,
    
        }) => (
         <form action="#" method="POST" className="p-7 sm:p-11" onSubmit={handleSubmit}>
